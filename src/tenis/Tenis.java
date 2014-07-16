@@ -11,7 +11,7 @@ import javax.swing.JFrame;
  *
  * @author Trainer Gold
  */
-public class Tenis {
+public class Tenis implements Juego {
 
     private int m_score1 = 0;
     private int m_score2 = 0;
@@ -22,9 +22,14 @@ public class Tenis {
         this.player1Name = player1Name;
         this.player2Name = player2Name;
     }
+    
+    public void resetScore (){
+    m_score1 = 0;
+    m_score2 = 0;
+    }
 
     public void wonPoint(String playerName) {
-        if (playerName == player1Name)//"player1")
+        if (playerName == player1Name)
             m_score1 += 1;
         else
             m_score2 += 1;
@@ -38,16 +43,16 @@ public class Tenis {
             switch (m_score1)
             {
                 case 0:
-                        score = "Love-All";
+                        score = "Cero-Iguales";
                     break;
                 case 1:
-                        score = "Fifteen-All";
+                        score = "Quince-Iguales";
                     break;
                 case 2:
-                        score = "Thirty-All";
+                        score = "Treinta-Iguales";
                     break;
                 default:
-                        score = "Deuce";
+                        score = "Empate";
                     break;
                 
             }
@@ -55,83 +60,34 @@ public class Tenis {
         else if (m_score1>=4 || m_score2>=4)
         {
             int minusResult = m_score1-m_score2;
-            if (minusResult==1) score ="Advantage Player1";
-            else if (minusResult ==-1) score ="Advantage Player2";
-            else if (minusResult>=2) score = "Win for Player1";
-            else score ="Win for player2";
+            if (minusResult==1) score ="Ventaja para Jugador 1";
+            else if (minusResult ==-1) score ="Ventaja para Jugador 2";
+            else if (minusResult>=2) score = "Gana Jugador 1";
+            else score ="Gana Jugador 2";
         }
         else
         {
-            for (int i=1; i<3; i++)
+            for (int cicloscore=1; cicloscore<3; cicloscore++)
             {
-                if (i==1) tempScore = m_score1;
+                if (cicloscore==1) tempScore = m_score1;
                 else { score+="-"; tempScore = m_score2;}
                 switch(tempScore)
                 {
                     case 0:
-                        score+="Love";
+                        score+="Cero";
                         break;
                     case 1:
-                        score+="Fifteen";
+                        score+="Quince";
                         break;
                     case 2:
-                        score+="Thirty";
+                        score+="Treinta";
                         break;
                     case 3:
-                        score+="Forty";
+                        score+="Cuarenta";
                         break;
                 }
             }
         }
         return score;
-    }
-    
- /*public static void main (String[]args){
- ///String Player1 = JOptionPane.showInputDialog("Introduce Nombre jugador 1:");
- //String Player2 = JOptionPane.showInputDialog("Introduce Nombre jugador 2:");
-
- Tenis juego = new Tenis("Player1","Player2");
- System.out.println(juego.getScore());
- juego.wonPoint("Player1");
- System.out.println(juego.getScore());
- juego.wonPoint("Player2");
- System.out.println(juego.getScore());
- juego.wonPoint("Player2");
- System.out.println(juego.getScore());
- juego.wonPoint("Player1");
- System.out.println(juego.getScore());
- juego.wonPoint("Player1");
- System.out.println(juego.getScore());
- juego.wonPoint("Player2");
- System.out.println(juego.getScore());
- juego.wonPoint("Player2");
- System.out.println(juego.getScore());
- juego.wonPoint("Player2");
- System.out.println(juego.getScore());
-
- /*juego.wonPoint("Anthony");
- System.out.println(juego.getScore());
- juego.wonPoint("Diego");
- System.out.println(juego.getScore());
- juego.wonPoint("Diego");
- System.out.println(juego.getScore());
- juego.wonPoint("Diego");
- System.out.println(juego.getScore());
- juego.wonPoint("Anthony");
- System.out.println(juego.getScore());
- juego.wonPoint("Diego");
- System.out.println(juego.getScore());
- juego.wonPoint("Diego");
- System.out.println(juego.getScore());
- juego.wonPoint("Anthony");
- System.out.println(juego.getScore());
- juego.wonPoint("Anthony");
- System.out.println(juego.getScore());
- juego.wonPoint("Anthony");
- System.out.println(juego.getScore());
-
- 
- }*/
-    
-    
+    } 
 }
