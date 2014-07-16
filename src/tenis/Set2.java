@@ -14,15 +14,14 @@ package tenis;
 
 public class Set2 {
     
-    private int p2;
-    private int p1;
-    private String p1N;
-    private String p2N;
-    private String[] p;
-    private Idioma i;
-    public Set2(String p1N, String p2N, String idioma) {
-        this.p1N = p1N;
-        this.p2N = p2N;
+    private int puntosJugador2;
+    private int puntosJugador1;
+    private String nombreJugador1;
+    private String nombreJugador2;
+    private String[] frases;
+    public Set2(String nombreJugador1, String nombreJugador2, String idioma) {
+        this.nombreJugador1 = nombreJugador1;
+        this.nombreJugador2 = nombreJugador2;
        setIdioma(idioma);
     }
     
@@ -30,64 +29,73 @@ public class Set2 {
         int intIdioma = idioma.equalsIgnoreCase("Es")?1:idioma.equalsIgnoreCase("En")?2:idioma.equalsIgnoreCase("Fr")?3:4;
         switch (intIdioma){
             case 1:
-                i = new Espanol();
-                this.p = i.getIdioma();
+                this.frases = (new Espanol()).getIdioma();
                 break;
             case 2:
-                i = new ingles();
-                this.p = i.getIdioma();
+                this.frases = (new ingles()).getIdioma();
                 break;
             case 3:
-                i = new French();
-                this.p = i.getIdioma();
+                this.frases = (new French()).getIdioma();
                 break;
             case 4:
-                i = new Deutsch();
-                this.p = i.getIdioma();
+                this.frases = (new Deutsch()).getIdioma();
                 break;
         }
     }
     
-    public void resetScore () {
-        p1 = 0;
-        p2 = 0;
+    public void setScoreCero() {
+        puntosJugador1 = 0;
+        puntosJugador2 = 0;
     }
 
     public String getScore() {
         String s;
-        
-        if (p1 < 4 && p2 < 4 && !(p1 + p2 == 6)) {
-            s = p[p1];
-            return (p1 == p2) ? s + p[4] : s + "-" + p[p2];
+        if (puntosJugador1 < 4 && puntosJugador2 < 4 && !(puntosJugador1 + puntosJugador2 == 6)) {
+            s = frases[puntosJugador1];
+            return (empate(puntosJugador1,puntosJugador2)) ? s + frases[4] : s + "-" + frases[puntosJugador2];
         } else {
-            if (p1 == p2)
-                return p[5];
-            s = p1 > p2 ? p1N : p2N;
-            return ((p1-p2)*(p1-p2) == 1) ? p[6] + s : p[7] + s;
+            if (empate(puntosJugador1,puntosJugador2))
+                return frases[5];
+            s = puntosJugador1 > puntosJugador2 ? nombreJugador1 : nombreJugador2;
+            return (Math.abs(puntosJugador1 - puntosJugador2) == 1) ? frases[6] + s : frases[7] + s;
         }
     }
-    
-    public void wonPoint(String playerName) {
-        if (playerName == "player1")
-            this.p1 += 1;
+    private boolean empate(int numero1,int numero2){
+        if(numero1 == numero2){
+            return  true;
+        }else{
+            return  false;
+        }
+    }
+    public void setPunto(String jugador) {
+        if (jugador == "player1")
+            this.puntosJugador1 += 1;
         else
-            this.p2 += 1;
+            this.puntosJugador2 += 1;
         
     }
 
-    public String getPlayer1(){
-        return p1+"";
+    public String getPuntosJugador1(){
+        return puntosJugador1+"";
     }
 
-    public String getPlayer2(){
-        return p2+"";
+    public String getPuntosJugador2(){
+        return puntosJugador2+"";
     }
 
-    public void setPlayer1(int points) {
-        p1=points;
+    public void setPuntosJugador1(int points) {
+        puntosJugador1 =points;
     }
 
-    public void setPlayer2(int points) {
-        p2=points;
+    public void setPuntosJugador2(int points) {
+        puntosJugador2 =points;
+    }
+
+    public void setNombreJugador1(String nombreJugador1) {
+        this.nombreJugador1 = nombreJugador1;
+    }
+
+    public void setNombreJugador2(String nombreJugador2) {
+        this.nombreJugador2 = nombreJugador2;
     }
 }
