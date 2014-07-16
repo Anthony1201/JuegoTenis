@@ -10,10 +10,13 @@ package tenis;
  *
  * @author Trainer Gold
  */
-public interface Juego {
+public class Espanol implements Idioma {
+    private String[] p = new String[]{"Cero", "Quince", "Treinta", "Cuarenta","-iguales","Empate","Ventaja ","Gana "};
+
+    public String[] getIdioma() {
+
+        return p;
+    }
     
-    String getScore();
-    void resetScore();
-    void wonPoint(String jugador);
     
 }

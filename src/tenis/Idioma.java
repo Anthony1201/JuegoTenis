@@ -10,10 +10,8 @@ package tenis;
  *
  * @author Trainer Gold
  */
-public interface Juego {
-    
-    String getScore();
-    void resetScore();
-    void wonPoint(String jugador);
+public interface Idioma {
+
+    String[] getIdioma();
     
 }
