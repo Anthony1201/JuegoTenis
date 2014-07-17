@@ -21,11 +21,11 @@ public class inicio {
                 if(textField1.getText() != "" && textField2.getText() != ""){
                     ventanainicial.setVisible(false);
                     JFrame juego = new JFrame("tenis");
-                    juego.setContentPane(new tenis(textField1.getText(), textField2.getText()).getVentana());
+                    juego.setContentPane(new control(textField1.getText(), textField2.getText()).getControl());
                     juego.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                     juego.pack();
                     juego.setVisible(true);
-                    juego.setSize(500,400);
+                    juego.setSize(400,300);
                 }else{
                     JOptionPane.showMessageDialog(null,"Falta nombre jugador");
                 }

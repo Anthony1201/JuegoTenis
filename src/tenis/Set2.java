@@ -19,7 +19,8 @@ public class Set2 {
     private String nombreJugador1;
     private String nombreJugador2;
     private String[] frases;
-    public Set2(String nombreJugador1, String nombreJugador2, String idioma) {
+    private static Set2 instancia;
+    private Set2(String nombreJugador1, String nombreJugador2, String idioma) {
         this.nombreJugador1 = nombreJugador1;
         this.nombreJugador2 = nombreJugador2;
        setIdioma(idioma);
@@ -97,5 +98,12 @@ public class Set2 {
 
     public void setNombreJugador2(String nombreJugador2) {
         this.nombreJugador2 = nombreJugador2;
+    }
+
+    public static Set2 getInstance(String nombreJugador1, String nombreJugador2, String idioma){
+        if(instancia == null){
+            instancia = new Set2(nombreJugador1,nombreJugador2,idioma);
+        }
+        return instancia;
     }
 }
