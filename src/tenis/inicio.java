@@ -42,6 +42,7 @@ public class inicio {
         ventanaprincipal.setFrame(inicio);
         inicio.setContentPane(ventanaprincipal.principal);
         inicio.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        inicio.setLocation(500,250);
         inicio.pack();
         inicio.setVisible(true);
     }

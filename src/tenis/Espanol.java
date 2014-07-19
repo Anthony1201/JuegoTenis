@@ -11,12 +11,32 @@ package tenis;
  * @author Trainer Gold
  */
 public class Espanol implements Idioma {
-    private String[] p = new String[]{"Cero", "Quince", "Treinta", "Cuarenta","-iguales","Empate","Ventaja ","Gana "};
+    private String[] frases = new String[]{"Cero", "Quince", "Treinta", "Cuarenta"};
 
-    public String[] getIdioma() {
+    public String getFrase(int posicion) {
 
-        return p;
+        return frases[posicion];
     }
-    
-    
+
+    @Override
+    public String getIguales() {
+        return "-iguales";
+    }
+
+    @Override
+    public String getEmpate() {
+        return "Empate";
+    }
+
+    @Override
+    public String getVentaja() {
+        return "Ventaja ";
+    }
+
+    @Override
+    public String getGana() {
+        return "Gana ";
+    }
+
+
 }

@@ -18,30 +18,16 @@ public class Set2 {
     private int puntosJugador1;
     private String nombreJugador1;
     private String nombreJugador2;
-    private String[] frases;
+    private Idioma frases;
     private static Set2 instancia;
-    private Set2(String nombreJugador1, String nombreJugador2, String idioma) {
+    private Set2(String nombreJugador1, String nombreJugador2, Idioma idioma) {
         this.nombreJugador1 = nombreJugador1;
         this.nombreJugador2 = nombreJugador2;
        setIdioma(idioma);
     }
     
-    public void setIdioma(String idioma){
-        int intIdioma = idioma.equalsIgnoreCase("Es")?1:idioma.equalsIgnoreCase("En")?2:idioma.equalsIgnoreCase("Fr")?3:4;
-        switch (intIdioma){
-            case 1:
-                this.frases = (new Espanol()).getIdioma();
-                break;
-            case 2:
-                this.frases = (new ingles()).getIdioma();
-                break;
-            case 3:
-                this.frases = (new French()).getIdioma();
-                break;
-            case 4:
-                this.frases = (new Deutsch()).getIdioma();
-                break;
-        }
+    public void setIdioma(Idioma idioma){
+        frases = idioma;
     }
     
     public void setScoreCero() {
@@ -52,13 +38,13 @@ public class Set2 {
     public String getScore() {
         String s;
         if (puntosJugador1 < 4 && puntosJugador2 < 4 && !(puntosJugador1 + puntosJugador2 == 6)) {
-            s = frases[puntosJugador1];
-            return (empate(puntosJugador1,puntosJugador2)) ? s + frases[4] : s + "-" + frases[puntosJugador2];
+            s = frases.getFrase(puntosJugador1);
+            return (empate(puntosJugador1,puntosJugador2)) ? s + frases.getIguales() : s + "-" + frases.getFrase(puntosJugador2);
         } else {
             if (empate(puntosJugador1,puntosJugador2))
-                return frases[5];
+                return frases.getEmpate();
             s = puntosJugador1 > puntosJugador2 ? nombreJugador1 : nombreJugador2;
-            return (Math.abs(puntosJugador1 - puntosJugador2) == 1) ? frases[6] + s : frases[7] + s;
+            return (Math.abs(puntosJugador1 - puntosJugador2) == 1) ? frases.getVentaja() + s : frases.getGana() + s;
         }
     }
     private boolean empate(int numero1,int numero2){
@@ -100,7 +86,7 @@ public class Set2 {
         this.nombreJugador2 = nombreJugador2;
     }
 
-    public static Set2 getInstance(String nombreJugador1, String nombreJugador2, String idioma){
+    public static Set2 getInstance(String nombreJugador1, String nombreJugador2, Idioma idioma){
         if(instancia == null){
             instancia = new Set2(nombreJugador1,nombreJugador2,idioma);
         }

@@ -15,33 +15,33 @@ public class control {
     private JButton jugador2;
     private JLabel marcador;
     private JButton resetButton;
-    private JComboBox comboBox1;
     private final Set2 set;
     private tenis tabla;
     private posicion tablainversa;
-    private String idioma;
 
     public control(String nombre1, String nombre2) {
         jugador1.setText(nombre1);
         jugador2.setText(nombre2);
-        idioma = comboBox1.getSelectedItem().toString();
-        tabla = new tenis(nombre1, nombre2,idioma);
-        set= Set2.getInstance(nombre1,nombre2,idioma);
+        tabla = new tenis(nombre1, nombre2);
+        set= Set2.getInstance(nombre1,nombre2,tabla.getIdioma());
+
         marcador.setText(set.getScore());
         JFrame posicion = new JFrame("Tabla posicion");
         posicion.setContentPane(tabla.getVentana());
         posicion.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        posicion.setLocation(420,0);
         posicion.pack();
         posicion.setVisible(true);
-        posicion.setSize(500, 600);
+        posicion.setSize(400, 400);
 
-        tablainversa = new posicion(nombre1, nombre2,idioma);
+        tablainversa = new posicion(nombre1, nombre2);
         JFrame posicionInversa = new JFrame("Tabla posicion inversa");
         posicionInversa.setContentPane(tablainversa.getPanel());
+        posicionInversa.setLocation(900,0);
         posicionInversa.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         posicionInversa.pack();
         posicionInversa.setVisible(true);
-        posicionInversa.setSize(500, 600);
+        posicionInversa.setSize(400, 400);
 
         jugador1.addActionListener(new ActionListener() {
             @Override
@@ -64,20 +64,7 @@ public class control {
                 nuevoPuntaje("");
             }
         });
-        comboBox1.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent actionEvent) {
-                set.setIdioma(comboBox1.getSelectedItem().toString());
-                for (int i = 0; i < tabla.getModelo().getRowCount(); i++) {
-                    cambiarPuntos(Integer.parseInt((String) tabla.getModelo().getValueAt(i, 0)),Integer.parseInt((String) tabla.getModelo().getValueAt(i, 1)));
-                    tabla.getModelo().setValueAt(set.getScore(),i,2);
-                }
-                for (int i = 0; i < tablainversa.getModelo().getRowCount(); i++) {
-                    cambiarPuntos(Integer.parseInt((String) tablainversa.getModelo().getValueAt(i, 0)),Integer.parseInt((String) tablainversa.getModelo().getValueAt(i, 1)));
-                    tablainversa.getModelo().setValueAt(set.getScore(),i,2);
-                }
-            }
-        });
+
         tablainversa.getTable1().addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent mouseEvent) {
@@ -116,8 +103,10 @@ public class control {
     private void nuevoPuntaje(String jugador){
         if(jugador != "")
             set.setPunto(jugador);
+        set.setIdioma(tabla.getIdioma());
         marcador.setText(set.getScore());
         tabla.getModelo().addRow(new String[]{set.getPuntosJugador1(), set.getPuntosJugador2(), set.getScore()});
+        set.setIdioma(tablainversa.getIdioma());
         tablainversa.getModelo().insertRow(0,new String[]{set.getPuntosJugador1(),set.getPuntosJugador2(),set.getScore()});
     }
 }

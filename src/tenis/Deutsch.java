@@ -4,9 +4,30 @@ package tenis;
  * Created by Admin on 11/07/14.
  */
 public class Deutsch implements Idioma{
-    private String[] p = {"Liebe", "Fünfzehn" , "Dreißig", "Vierzig","-À","Gleichstand","Vorteil","Gewinnen"};
+    private String[] frases = {"Liebe", "Fünfzehn" , "Dreißig", "Vierzig"};
 
     @Override
-    public String[] getIdioma() {
-        return p;}
+    public String getFrase(int posicion) {
+        return frases[posicion];
+    }
+
+    @Override
+    public String getIguales() {
+        return "-À";
+    }
+
+    @Override
+    public String getEmpate() {
+        return "Gleichstand";
+    }
+
+    @Override
+    public String getVentaja() {
+        return "Vorteil ";
+    }
+
+    @Override
+    public String getGana() {
+        return "Gewinnen ";
+    }
 }

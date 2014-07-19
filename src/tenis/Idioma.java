@@ -12,6 +12,9 @@ package tenis;
  */
 public interface Idioma {
 
-    String[] getIdioma();
-    
+    String getFrase(int posicion);
+    String getIguales();
+    String getEmpate();
+    String getVentaja();
+    String getGana();
 }

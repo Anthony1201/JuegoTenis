@@ -5,7 +5,27 @@ import tenis.Idioma;
  */
 public class Italiano implements Idioma {
     @Override
-    public String[] getIdioma() {
-        return new String[0];
+    public String getFrase(int posicion) {
+        return null;
+    }
+
+    @Override
+    public String getIguales() {
+        return null;
+    }
+
+    @Override
+    public String getEmpate() {
+        return null;
+    }
+
+    @Override
+    public String getVentaja() {
+        return null;
+    }
+
+    @Override
+    public String getGana() {
+        return null;
     }
 }
