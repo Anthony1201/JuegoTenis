@@ -2,20 +2,16 @@
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
- */
 
-package tenis;
-
-/**
  *
  * @author Trainer Gold
  */
 public class Espanol implements Idioma {
-    private String[] frases = new String[]{"Cero", "Quince", "Treinta", "Cuarenta"};
+    private String[] p = new String[]{"Cero", "Quince", "Treinta", "Cuarenta"};
 
+    @Override
     public String getFrase(int posicion) {
-
-        return frases[posicion];
+        return p[posicion];
     }
 
     @Override
@@ -37,6 +33,4 @@ public class Espanol implements Idioma {
     public String getGana() {
         return "Gana ";
     }
-
-
 }

@@ -1,33 +1,32 @@
-package tenis;
 
 /**
  * Created by Admin on 11/07/14.
  */
-public class ingles implements Idioma {
-    private String[] frases = new String[]{"Love", "Fifteen", "Thirty", "Forty"};
+public class Deutsch implements Idioma{
+    private String[] p = {"Liebe", "Fünfzehn" , "Dreißig", "Vierzig"};
 
     @Override
     public String getFrase(int posicion) {
-        return frases[posicion];
+        return p[posicion];
     }
 
     @Override
     public String getIguales() {
-        return "-All";
+        return "-À";
     }
 
     @Override
     public String getEmpate() {
-        return "Deuce";
+        return "Gleichstand";
     }
 
     @Override
     public String getVentaja() {
-        return "Advantage ";
+        return "Vorteil";
     }
 
     @Override
     public String getGana() {
-        return "Win for ";
+        return "Gewinnen";
     }
 }

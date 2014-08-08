@@ -1,10 +1,8 @@
-package tenis;
-
 /**
- * Created by Admin on 11/07/14.
+ * Created by Admin on 08/08/14.
  */
-public class French implements Idioma {
-    private String[] frases = new String[]{"Zèro", "Quinze" , "Trente", "Quarante"};
+public class Ingles implements Idioma {
+    private String[] frases = new String[]{"Love", "Fifteen", "Thirty", "Forty"};
 
     @Override
     public String getFrase(int posicion) {
@@ -13,23 +11,21 @@ public class French implements Idioma {
 
     @Override
     public String getIguales() {
-        return "-À";
+        return "-All";
     }
 
     @Override
     public String getEmpate() {
-        return "Égalité";
+        return "Deuce";
     }
 
     @Override
     public String getVentaja() {
-        return "Avantage ";
+        return "Advantage ";
     }
 
     @Override
     public String getGana() {
-        return "Gagner";
+        return "Win for ";
     }
 }
-
-

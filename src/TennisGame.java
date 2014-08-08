@@ -1,35 +1,20 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
-package tenis;
+import java.util.Observable;
 
 /**
- *
- * @author Trainer Gold
+ * Created by Admin on 07/08/14.
  */
+public class TennisGame extends Observable{
 
-
-public class Set2 {
-    
     private int puntosJugador2;
     private int puntosJugador1;
     private String nombreJugador1;
     private String nombreJugador2;
     private Idioma frases;
-    private static Set2 instancia;
-    private Set2(String nombreJugador1, String nombreJugador2, Idioma idioma) {
-        this.nombreJugador1 = nombreJugador1;
-        this.nombreJugador2 = nombreJugador2;
-       setIdioma(idioma);
+    private static TennisGame instancia;
+    private boolean estado = false;
+    private TennisGame() {
     }
-    
-    public void setIdioma(Idioma idioma){
-        frases = idioma;
-    }
-    
+
     public void setScoreCero() {
         puntosJugador1 = 0;
         puntosJugador2 = 0;
@@ -44,7 +29,7 @@ public class Set2 {
             if (empate(puntosJugador1,puntosJugador2))
                 return frases.getEmpate();
             s = puntosJugador1 > puntosJugador2 ? nombreJugador1 : nombreJugador2;
-            return (Math.abs(puntosJugador1 - puntosJugador2) == 1) ? frases.getVentaja() + s : frases.getGana() + s;
+            if (Math.abs(puntosJugador1 - puntosJugador2) == 1){ return frases.getVentaja() + s; }else{ estado = false; return frases.getGana() + s;}
         }
     }
     private boolean empate(int numero1,int numero2){
@@ -59,15 +44,14 @@ public class Set2 {
             this.puntosJugador1 += 1;
         else
             this.puntosJugador2 += 1;
-        
+
+        setChanged();
+        notifyObservers();
+
     }
 
-    public String getPuntosJugador1(){
-        return puntosJugador1+"";
-    }
-
-    public String getPuntosJugador2(){
-        return puntosJugador2+"";
+    public void setIdioma(Idioma idioma){
+        frases = idioma;
     }
 
     public void setPuntosJugador1(int points) {
@@ -86,10 +70,24 @@ public class Set2 {
         this.nombreJugador2 = nombreJugador2;
     }
 
-    public static Set2 getInstance(String nombreJugador1, String nombreJugador2, Idioma idioma){
+    public String getPuntosJugador1(){
+        return puntosJugador1+"";
+    }
+
+    public String getPuntosJugador2(){
+        return puntosJugador2+"";
+    }
+
+    public static TennisGame getInstance(){
         if(instancia == null){
-            instancia = new Set2(nombreJugador1,nombreJugador2,idioma);
+            instancia = new TennisGame();
         }
         return instancia;
+    }
+    public boolean isEstado() {
+        return estado;
+    }
+    public void setEstado(boolean estado){
+        this.estado = estado;
     }
 }
